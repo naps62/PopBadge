@@ -1,0 +1,370 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+* {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style-type: none;
+  z-index: 300;
+}
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  color: #222222;
+  background: #EFEFF0;
+  overflow-x: hidden;
+}
+input, select, textarea {
+  outline: none;
+}
+input[readonly] {
+  cursor: not-allowed;
+}
+footer {
+  width: 100%;
+  padding: 40px 0;
+
+  .disclaimer {
+    flex: 0 1 600px;
+
+    p {
+      text-align: right;
+      font: 500 12px/16px sans-serif;
+      color: gray;
+    }
+  }
+  .footer-link {
+    margin-right: 10px;
+    font: 800 14px/24px sans-serif;
+    color: #222222;
+  }
+
+  @media (max-width: 600px) {
+    footer {
+      display: block;
+    }
+    .disclaimer {
+      p {
+        text-align: left;
+      }
+    }
+  }
+}
+.middle {
+  width: 960px;
+  max-width: calc(100% - 20px);
+  margin: 0 auto;
+}
+/* flex item */
+.flexi-i {
+  flex: 1 1;
+  min-height: 0; /* weird firefox thing for nested overflow-y */
+}
+/* flex container */
+.flexi-c {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  align-content: stretch;
+}
+.r {
+  flex-direction: row;
+}
+.rr {
+  flex-direction: row-reverse;
+}
+.side-bar {
+  flex: 0 0 280px;
+  padding-top: 20px;
+  padding-right: 20px;
+}
+.listing {
+  padding-top: 10px;
+}
+.flash {
+  width: 100%;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  font: 500 14px/30px serif;
+  border-radius: 3px;
+  border: 1px solid lightgray;
+  background: white;
+
+  > .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    line-height: 30px;
+    width: 30px;
+    text-align: center;
+    color: gray;
+    cursor: pointer;
+  }
+
+}
+nav {
+  width: 100%;
+  height: 60px;
+  z-index: 700;
+
+  .nav-left {
+    #logo {
+      flex: 0 0 260px;
+      height: 40px;
+      margin: 10px 0;
+      margin-right: 15px;
+      background: image-url("logo.png") no-repeat center;
+      background-size: auto 100%;
+
+      @media (max-width: 660px) {
+        display: none;
+      }
+    }
+    > * {
+      flex-grow: 0;
+    }
+  }
+  .nav-right {
+    flex-grow: 0;
+    justify-content: flex-end;
+
+    > * {
+      flex-grow: 0;
+    }
+  }
+
+  .menu-item {
+    height: 60px;
+    padding: 10px;
+    font: 500 20px/40px sans-serif;
+    color: black;
+    cursor: pointer;
+
+    @media (max-width: 400px) {
+      padding-left: 0;
+    }
+  }
+  .menu-arrow {
+    padding-right: 16px;
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: 24px;
+      right: 0;
+      width: 12px;
+      height: 12px;
+      background: image-url("arrow.svg") no-repeat center;
+      background-size: 12px;
+    }
+  }
+  .drop-down {
+    position: absolute;
+    top: 55px;
+    left: 0;
+    width: calc(720px + 40px);
+    padding: 20px;
+    border-radius: 5px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 20px;
+
+    background: white;
+    display: none;
+
+    @media (max-width: 1360px) {
+      width: calc(480px + 40px);
+    }
+
+    @media (max-width: 840px) {
+      width: calc(280px + 40px);
+    }
+
+    .drop-item:hover {
+      background: #FAFAFA;
+      cursor: pointer;
+    }
+
+    .drop-text{
+      padding: 10px;
+      font: 400 14px/16px sans-serif;
+
+      .drop-title {
+        color: #222222;
+        font: 600 18px/20px sans-serif;
+        cursor: pointer;
+      }
+    }
+
+    .drop-icon {
+      flex: 0 0 60px;
+      height: 60px;
+      background: image-url("/missing.png") no-repeat center;
+      background-size: contain;
+      cursor: pointer;
+    }
+
+    &:after {
+      position: absolute;
+      content: "";
+      top: -5px;
+      left: 40px;
+      width: 10px;
+      height: 10px;
+      background: white;
+      transform: rotate(45deg);
+    }
+  }
+  .drop-down-parent:hover > .drop-down {
+    display: grid;
+  }
+}
+
+.cards, .cards-big {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-gap: 20px;
+}
+.cards-big {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+.card {
+  padding: 20px;
+  border-radius: 10px;
+  border-bottom: 3px solid lightgray;
+  background: white;
+  cursor: pointer;
+
+  .card-image {
+    display: block;
+    width: 100%;
+    padding-bottom: 100%;
+    background: image-url("/missing.png") no-repeat center;
+    background-size: contain;
+  }
+  .card-title {
+    display: block;
+    padding: 10px 0;
+    text-align: center;
+    font: 600 14px/20px sans-serif;
+    color: #222222;
+  }
+  .card-star {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    background: image-url("star.svg") no-repeat center;
+    background-size: contain;
+    z-index: 500;
+  }
+  .card-star.active {
+    background: image-url("gold-star.svg") no-repeat center;
+    background-size: contain;
+  }
+  .card-inventory {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font: 500 12px/16px sans-serif;
+    cursor: pointer;
+    z-index: 500;
+  }
+  .card-tag {
+    text-align: center;
+
+    a, span {
+      margin: 0 auto;
+      padding: 0 10px;
+      text-align: center;
+      margin-bottom: 5px;
+      border-radius: 10px;
+      font: 600 14px/20px sans-serif;
+      color: #222222;
+      background: #2ecc71;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+} 
+.card-gold {
+  border-bottom: 3px solid gold;
+}
+.card-gray {
+  opacity: 0.3;
+}
+
+.rows {
+  .cross {
+    text-decoration: line-through;
+  }
+
+  li {
+    padding-left: 10px;
+    font: 300 16px/32px sans-serif;
+    background: lightgray;
+
+    &:nth-child(even) {
+      background: lavender;
+    }
+  }
+}
+
+#search {
+  width: 100%;
+  border-bottom: 3px solid lightgray;
+
+  > * {
+    height: 40px;
+    border: none;
+  }
+  .search-field {
+    flex: 1 1 calc(100% - 200px);
+    padding-left: 10px;
+  }
+  .search-submit {
+    flex: 0 1 200px;
+    text-align: center;
+    cursor: pointer;
+  }
+}
+.search-wrapper {
+  width: 100%;
+  max-width: 720px;
+  margin: 40px auto;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 560px) {
+  #app {
+    display: block;
+
+    .side-bar {
+      padding: 0;
+    }
+  }
+}

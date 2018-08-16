@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Pop Badge Trade</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="middle">
+      <nav class="flexi-c r">
+        <div class="nav-left flexi-i flexi-c r">
+          <a href="/" id="logo"></a>
+
+          <div class="flexi-i drop-down-parent">
+            <p class="menu-item">Collections</p>
+
+            <ul class="drop-down">
+              <% Collection.all.each do |c| %>
+                <li class="flexi-c r drop-item">
+                  <%= drop_icon(collection_path(c), c.image.url) %>
+
+                  <div class="flexi-i drop-text">
+                    <%= link_to c.name, collection_path(c), class: "drop-title" %>
+                    <p><%= c.badges_count %> badges</p>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+
+          <div class="flexi-i drop-down-parent">
+            <p class="menu-item">Categories</p>
+
+            <ul class="drop-down">
+              <% Category.all.each do |c| %>
+                <li class="flexi-c r drop-item">
+                  <%= drop_icon(category_path(c), c.image.url) %>
+
+                  <div class="flexi-i drop-text">
+                    <%= link_to c.name, category_path(c), class: "drop-title" %>
+                    <p><%= c.badges_count %> badges</p>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+
+
+        <div class="nav-right flexi-i flexi-c r">
+          <% if current_user %>
+            <%= link_to "me", me_path, class: "menu-item" %>
+            <%= link_to "logout", logout_path, method: :delete, class: "menu-item menu-arrow" %>
+          <% else %>
+            <%= link_to "login", login_page_path, class: "menu-item" %>
+            <%= link_to "register", register_page_path, class: "menu-item" %>
+          <% end %>
+        </div>
+      </nav>
+
+      <main>
+        <% flash_messages.each do |m| %>
+          <div class="flash <%= m[:kind] %>">
+            <%= m[:text] %>
+            <span class="close" onclick="this.parentNode.parentNode.removeChild(this.parentNode)">✖</span>
+          </div>
+        <% end %>
+
+        <%= yield %>
+      </main>
+
+      <footer class="flexi-c r">
+        <div class="flexi-i flexi-c r">
+          <a href="#" class="footer-link">faq</a>
+          <a href="#" class="footer-link">news</a>
+          <a href="#" class="footer-link">stats</a>
+          <a href="#" class="footer-link">privacy</a>
+        </div>
+
+        <div class="flexi-i disclaimer">
+          <p>LEGOLAND, Alton Towers Resort, THORPE PARK Resort, Sea Life, Chessington World of Adventures, Warwick Castle, Madame Tussauds, The Dungeons & The Blackpool Tower are trademarks of Merlin Entertainments Group. LEGO, the LEGO logo and the Minifigures are trademarks of LEGO Group. Longleat and Cheddar Gorge & Caves is copyright to Longleat Enterprises Ltd. Twycross Zoo is copyright to Twycross Zoo. Shrek is copyright to DreamWorks Animation. Chester Zoo is copyright to The North of England Zoological Society/Chester Zoo. Folly Farm is copyright to Folly Farm.</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

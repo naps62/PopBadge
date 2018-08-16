@@ -1,0 +1,19 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 25
+  timeout: 5000
+
+development:
+  <<: *default
+  host: "localhost"
+  database: "poppity_development"
+  username: "peter"
+
+production:
+  <<: *default
+  host: <%= ENV["DB_HOST"] %>
+  database: <%= ENV["DB_NAME"] %>
+  username: <%= ENV["DB_USERNAME"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
