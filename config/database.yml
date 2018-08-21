@@ -8,8 +8,9 @@ default: &default
 development:
   <<: *default
   host: "localhost"
-  database: "poppity_development"
-  username: "peter"
+  database: "popbadge_development"
+  username: "popbadge"
+  password: "LogeMan1234"
 
 production:
   <<: *default

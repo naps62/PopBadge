@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      RAILS_ENV: production
+      DATABASE_HOST: mysql
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: toor
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app
+    networks:
+      - pop-badge-network
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: popbadge_production
+      POSTGRES_PASSWORD: toor
+    ports:
+      - '8080:8080'
+    networks:
+      - pop-badge-network
+
+networks:
+  pop-badge-network:
+    driver: bridge

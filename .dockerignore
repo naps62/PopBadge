@@ -1,0 +1,15 @@
+.bundle
+.git
+.gitignore
+Guardfile
+Procfile
+docker-compose.yml
+doc
+log
+public/assets
+public/uploads
+tmp
+!tmp/cache/.keep
+!tmp/pids/.keep
+!tmp/sockets/.keep
+vendor/ruby

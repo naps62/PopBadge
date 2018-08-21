@@ -1,8 +1,8 @@
 # Change to match your CPU core count
-workers 2
+workers 1
 
 # Min and Max threads per worker
-threads 1, 6
+threads 1, 1
 
 app_dir = File.expand_path("../..", __FILE__)
 shared_dir = "#{app_dir}/shared"
@@ -13,6 +13,7 @@ environment rails_env
 
 # Set up socket location
 bind "unix://#{shared_dir}/sockets/puma.sock"
+bind 'tcp://0.0.0.0:3000'
 
 # Logging
 stdout_redirect "#{shared_dir}/log/puma.stdout.log", "#{shared_dir}/log/puma.stderr.log", true
