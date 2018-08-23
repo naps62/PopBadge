@@ -4,6 +4,15 @@ col, cat = nil, nil
 
 file = Rails.root.join("seed", "data.csv")
 
+require 'paperclip/media_type_spoof_detector'
+module Paperclip
+  class MediaTypeSpoofDetector
+    def spoofed?
+      false
+    end
+  end
+end
+
 CSV.foreach(file) do |row|
   col = Collection.find_or_create_by(name: row[2]) unless row[2] == col&.name
   cat = Category.find_or_create_by(name: row[3]) unless row[2] == cat&.name

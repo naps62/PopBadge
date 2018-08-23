@@ -7,6 +7,7 @@ RUN apt-get update \
     postgresql-client \
     sqlite3 --no-install-recommends \
     libpq-dev \
+    imagemagick \
   && rm -rf /var/lib/apt/lists/* \
   && mkdir -p /app
 
