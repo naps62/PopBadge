@@ -20,5 +20,5 @@ class Badge < ApplicationRecord
     url: "/sources/:hash.:extension",
     hash_secret: "ThisIsntProtectingAnythingJustWantADirectLink",
     default_url: "/missing.png"
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+  validates_attachment_content_type :image, content_type: [/\Aimage\/.*\z/]
 end
