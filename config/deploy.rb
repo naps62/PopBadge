@@ -1,5 +1,5 @@
 # Change these
-server '209.97.186.180', roles: [:web, :app, :db], primary: true
+server '209.97.186.180', port: 22, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:TTB18/PopBadge.git'
 set :application,     'popbadge'
