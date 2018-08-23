@@ -1,0 +1,10 @@
+popbadge.trade, www.popbadge.trade {
+  tls ddeehh87@gmail.com
+
+  proxy / app:3000 {
+    transparent
+  }
+
+  gzip
+  log stdout
+}
