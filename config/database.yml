@@ -14,7 +14,7 @@ development:
 
 production:
   <<: *default
-  host: <%= ENV["DB_HOST"] %>
-  database: <%= ENV["DB_NAME"] %>
-  username: <%= ENV["DB_USERNAME"] %>
-  password: <%= ENV["DB_PASSWORD"] %>
+  host: "postgres"
+  database: "popbadge_production"
+  username: "postgres"
+  password: "toor"
