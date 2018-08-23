@@ -7,13 +7,14 @@ services:
       dockerfile: Dockerfile
     environment:
       RAILS_ENV: production
-      DATABASE_HOST: mysql
-      DATABASE_USERNAME: root
-      DATABASE_PASSWORD: toor
+      DB_HOST: postgres
+      DB_NAME: popbadge_production
+      DB_USERNAME: postgres
+      DB_PASSWORD: toor
     ports:
       - '3000:3000'
-    volumes:
-      - .:/app
+    depends_on:
+      - postgres
     networks:
       - pop-badge-network
 
@@ -23,11 +24,14 @@ services:
     environment:
       POSTGRES_DB: popbadge_production
       POSTGRES_PASSWORD: toor
-    ports:
-      - '8080:8080'
     networks:
       - pop-badge-network
+    volumes:
+      - db_volume:/var/lib/postgresql/data
 
 networks:
   pop-badge-network:
     driver: bridge
+
+volumes:
+  db_volume:

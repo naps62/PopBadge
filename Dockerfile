@@ -25,5 +25,5 @@ RUN gem install rake && bundle install --without test development --no-cache \
 COPY . /app
 
 EXPOSE 3000
-ENTRYPOINT ["bundle", "exec"]
-CMD ["rails", "server"]
+
+ENTRYPOINT ["/app/entrypoint.sh"]
