@@ -1,6 +1,18 @@
 version: '3'
 
 services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.caddy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - caddy_volume:/root/.caddy
+    environment:
+      ACME_AGREE: "true"
+
   app:
     build:
       context: .
@@ -12,7 +24,7 @@ services:
       DB_USERNAME: postgres
       DB_PASSWORD: toor
     ports:
-      - '80:3000'
+      - '3000:3000'
     depends_on:
       - postgres
     networks:
@@ -34,4 +46,5 @@ networks:
     driver: bridge
 
 volumes:
+  caddy_volume:
   db_volume:
