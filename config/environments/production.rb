@@ -45,8 +45,8 @@ Rails.application.configure do
   config.action_cable.allowed_request_origins = [
     'http://138.68.132.172',
     'https://138.68.132.172',
-    'http://popbadge.trade',
-    'https://popbadge.trade'
+    'http://popbadge.info',
+    'https://popbadge.info'
   ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.

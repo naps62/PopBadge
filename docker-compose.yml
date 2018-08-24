@@ -27,8 +27,8 @@ services:
       - '3000:3000'
     depends_on:
       - postgres
-    networks:
-      - pop-badge-network
+    volumes:
+      - public_sources:/app/public/sources
 
   postgres:
     image: postgres
@@ -36,15 +36,10 @@ services:
     environment:
       POSTGRES_DB: popbadge_production
       POSTGRES_PASSWORD: toor
-    networks:
-      - pop-badge-network
     volumes:
       - db_volume:/var/lib/postgresql/data
-
-networks:
-  pop-badge-network:
-    driver: bridge
 
 volumes:
   caddy_volume:
   db_volume:
+  public_sources:
